@@ -1,0 +1,54 @@
+<div class="hero" style="background-image: url('{{asset('images/VoitureBg.jpg')}}')">
+        
+  <div class="container">
+    <div class="row align-items-center justify-content-center">
+      <div class="col-lg-10">
+        <div class="intro">
+          <h1><strong>Nos Voitures</strong></h1>
+          <div class="custom-breadcrumbs"><a href="{{path('Acceuil')}}">Acceuil</a> <span class="mx-2">/</span> <strong>Voitures</strong></div>
+        </div>
+
+        <form method="post" action="{{path('RechercheVoiture')}}" onsubmit="" class="trip-form">
+          
+          <div class="row align-items-center">
+            
+            <div class="mb-3 mb-md-0 col-md-3">
+              <select name="modele" id="" class="custom-select form-control">
+                <option value="modele">Modeles</option>
+                {% if voitures is defined %}
+                  {% for voiture in voitures %}     
+                    <option value="{{voiture.modele}}">{{voiture.modele}}</option>
+                  {% endfor %}
+                {% endif %}
+              </select>
+            </div>
+
+            <div class="mb-3 mb-md-0 col-md-3">
+              <select name="marque" id="" class="custom-select form-control">
+                <option value="marque">Marques</option>
+                {% if voitures is defined %}
+                  {% for voiture in voitures %}     
+                    <option value="{{voiture.marque}}">{{voiture.marque}}</option>
+                  {% endfor %}
+                {% endif %}
+              </select>
+            </div>
+
+            <div class="mb-3 mb-md-0 col-md-3">
+              <div class="form-control-wrap">
+                <input type="number" id="cf-4" placeholder="NumeroId" name="numId" class="form-control">
+              </div>
+            </div>
+
+            <div class="mb-3 mb-md-0 col-md-3">
+              <button class="btn btn-primary btn-block py-3">Rechercher</button>
+            </div>
+
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

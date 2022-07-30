@@ -1,0 +1,97 @@
+<div class="site-section bg-light">
+    <div class="container">
+    {% if is_granted('ROLE_ADMIN') %}
+      <a href="{{ path('AjouterResponsable') }}" class="btn btn-outline-primary">Ajouter un Responsable</a>
+    
+        <form method="post" action="{{path('RechercheDateNaiss')}}" onsubmit="" class="trip-form">
+
+          <div class="row align-items-center">
+            
+            <div class="mb-3 mb-md-0 col-md-3">
+              <div class="form-control-wrap">
+                <input type="date" id="cf-4" placeholder="date1" name="date1" class="form-control">
+              </div>
+            </div>
+
+            <div class="mb-3 mb-md-0 col-md-3">
+              <div class="form-control-wrap">
+                <input type="date" id="cf-4" placeholder="date2" name="date2" class="form-control">
+              </div>
+            </div>
+
+            <div class="mb-3 mb-md-0 col-md-3">
+              <div class="form-control-wrap">
+                
+              </div>
+            </div>
+
+            <div class="mb-3 mb-md-0 col-md-3">
+              <button class="btn btn-primary btn-block py-3">Rechercher</button>
+            </div>
+
+          </div>
+
+        </form>
+    {% endif %}
+        <div class="row">
+          {% if is_granted('ROLE_GERANT') %}
+            <div class="col-lg-7">
+              <h2 class="section-heading"><strong>Responsables</strong></h2>
+              <p class="mb-5">Liste Des Responsables</p>    
+            </div>
+          {% else %}
+           <div class="col-lg-7">
+              <h2 class="section-heading"><strong>Liste de Nos Responsable</strong></h2>
+              <p class="mb-5">Contactez Nos Responsables</p>    
+            </div>
+          {% endif %}
+          
+        </div>
+        <div class="row">
+        {% if responsables is defined %}
+          {% for responsable in responsables %}
+            <div class="col-lg-4 mb-4 mb-lg-0">
+              <div class="testimonial-2">
+                <blockquote class="mb-4">
+                  <h3>Informations du Responsable N°:{{ loop.index }}</h3>
+                  <p>Role:{{ responsable.NomRole }}    Id:{{ responsable.id }}</p>
+                  <p>Telephone:{{ responsable.Telephone }}</p>
+                  <p>DateNaissance:{{ responsable.DateNaissance ? responsable.DateNaissance|date('Y-m-d') : '' }}</p>
+                  <p>Username:{{ responsable.UserName }}
+                  <td></p><a href="{{ path('InfosResponsable', {'id': responsable.id}) }}" class="btn btn-primary btn-sm">Infos+</a></p></td>
+                  <div class="rent-price">
+                    <span class="mx-1"><a href="https://wa.me/+228{{responsable.telephone}}?text=Comment vont Nos Clients?" class="btn btn-outline-primary">Watsapp</a><span class="mx-1"></strong>
+                    &nbsp<span class="mx-1"><a href="tel:+228{{responsable.telephone}}" class="btn btn-outline-primary">Appeler</a></span>
+                    &nbsp<span class="mx-1"><a href="sms:+228{{responsable.telephone}}" class="btn btn-outline-primary">SMS</a></span>
+                  </div>
+                </blockquote>
+                <div class="d-flex v-card align-items-center">
+                  <img src="{{asset('ResponsablesImages/')~ responsable.image}}" alt="Image" class="img-fluid mr-3">
+                  <div class="author-name">
+                    <span class="d-block">{{ responsable.nom }}   {{ responsable.prenom }}</span>
+                    <span>Nom Prenom</span>
+                  </div>
+                </div>
+                <div class="d-flex flex-row">
+                {% if is_granted('ROLE_ADMIN') %}
+                  <td><a href="{{ path('ModifierResponsable', {'id': responsable.id}) }}" class="btn btn-outline-primary" >Modifier</a></td>
+                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                  <form method="post" action="{{ path('SupprimerResponsable', {'id': responsable.id}) }}" onsubmit="return confirm('Etes vous sur de vouloir supprimer ce Responsable?');">
+                    <button class="btn btn-outline-danger">Supprimer</button>
+                  </form>
+                {% endif %}
+                </div> 
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <h2 class="section-heading"><strong>Aucun Responsable présent pour l'instant</strong></h2>
+        {% endif %}
+            
+          
+        </div>
+       
+      </div>
+      
+    </div>
+    

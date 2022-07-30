@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+   <div class="hero" style="background-image: url('{{asset('images/Contact.jpg')}}')">
+        
+    <div class="container">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-lg-10">
+
+          <div class="row mb-5">
+            <div class="col-lg-7 intro">
+              <h1><strong>Contacts</strong></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block Features %}
+    {% include 'responsable/ListeResponsable.html.twig' %}
+{% endblock %}
+
+{% block Description %}
+     {% include 'gerant/ListeGerant.html.twig' %}
+{% endblock %}
+
+{% block Actions %}
+        {% include 'dashboard/Actions.html.twig' %}
+{% endblock %}

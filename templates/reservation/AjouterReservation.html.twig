@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+
+{% block header %}
+<div class="hero inner-page" style="background-image: url({{asset('images/hero_1_a.jpg')}})">
+    <div class="container">
+      <div class="row align-items-end ">
+        <div class="col-lg-5">
+
+          <div class="intro">
+            <h1><strong>Ajout d'une Réservation</strong></h1>
+            {% if is_granted('ROLE_GERANT')%}
+              <div class="custom-breadcrumbs"><a href="{{path('Réservation')}}">Réservations</a> <span class="mx-2">/</span> <strong>Ajouter une Réservation</strong></div>
+            {% endif %}
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+
+
+{% block Description %}
+    {% form_theme form 'bootstrap_4_layout.html.twig' %}
+    {{ form_start(form) }}
+    <div class="form-group">
+    {{ form_widget(form) }}
+    </div>
+    <div class="row"> 
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <div class="d-flex justify-content-between"> 
+        <button class="btn btn-primary btn-sm">Sauvegarder</button>
+        {{ form_end(form) }}
+        {% if is_granted('ROLE_CLIENT')%}
+            <a href="{{ path('Voiture') }}" class="btn btn-dark">Retourner à Voitures</a>
+        {% endif %}
+        {% if is_granted('ROLE_GERANT') %}
+            <a href="{{ path('Réservation') }}" class="btn btn-dark">Retourner à Réservations</a>
+        {% endif %}
+      </div>
+    </div>
+{% endblock %}
+
+
+    

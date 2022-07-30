@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+      {% include 'voiture/VoitureHeader.html.twig' %}
+{% endblock %}
+
+{% block ListeVoitures %}
+    <div class="testimonial-2">
+        <blockquote class="mb-4">
+            <h3>Montant de La Reservation</h3>
+        </div>
+    </div>
+     <form method="post" action="{{ path('ReserverVoiture' , {'id':voiture.id}) }}" onsubmit="return confirm('Etes Vous vraiment sur de vouloir Reserver la {{ voiture.marque }} {{ voiture.modele }} ?');">
+        <div class="modal-body">
+            <input type="number" class="form-control" id="exampleInputPassword1" name="montant" placeholder="Montant">
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Annuler</button>
+            <button type="submit" class="btn btn-outline-primary">Reserver</button>
+        </div>
+    </form>
+{% endblock %}
+
+{% block Actions %}
+    {% include 'dashboard/Actions.html.twig' %}
+{% endblock %}

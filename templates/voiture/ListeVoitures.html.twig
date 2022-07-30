@@ -1,0 +1,81 @@
+<div class="site-section bg-light">
+    <div class="container">
+    {% if is_granted('ROLE_GERANT') %}
+        <p><a href="{{ path('AjouterVoiture') }}" class="btn btn-outline-primary">Ajouter une Voiture</a></p>
+    {% endif %}
+      <div class="row">
+        <div class="col-lg-7">
+          <h2 class="section-heading"><strong>Voitures Disponibles</strong></h2>
+          <p class="mb-5">Faites Votre Choix</p>    
+        </div>
+      </div>
+      <div class="row">   
+        {% if voitures is defined %}
+            {% for voiture in voitures %}     
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="listing d-block  align-items-stretch">
+                <div class="listing-img h-100 mr-4">
+                    <img src="{{asset('CarImages/')~ voiture.image}}" alt="Image" class="img-fluid">
+                </div>
+                <div class="listing-contents h-100">
+                    <h3>{{ voiture.marque }} {{ voiture.modele }}</h3>
+                    <a href="{{ path('InfosVoiture', {'id': voiture.id}) }}" class="btn btn-outline-dark">+ Infos</a>
+                    <div class="d-block d-md-flex mb-3 border-bottom pb-3">
+                        <div class="listing-feature pr-4">
+                            <span class="caption">Statut:</span>
+                            <span class="number">{{ voiture.Statut }}</span>
+                        </div>
+                        <div class="listing-feature pr-4">
+                            <span class="caption">Publié Le:</span>
+                            <span class="number">{{ voiture.DatePubli ? voiture.DatePubli|date('Y-m-d') : '' }}</span>
+                        </div>
+                        <div class="listing-feature pr-4">
+                            <span class="caption">Prix:</span>
+                            <span class="number">{{ voiture.Prix }}</span>
+                        </div>
+                    </div>
+                    <div class="d-block d-md-flex mb-3 border-bottom pb-3">
+                        <div class="listing-feature pr-4">
+                            <span class="caption">Couleur:</span>
+                            <span class="number">{{ voiture.couleur }}</span>
+                        </div>
+                        <div class="listing-feature pr-4">
+                            <span class="caption">NumSerie:</span>
+                            <span class="number">{{ voiture.numserie }}</span>
+                        </div>
+                        <div class="listing-feature pr-4">
+                            <span class="caption">NumIdentifiant:</span>
+                            <span class="number">{{ voiture.NumId }}</span>
+                        </div>
+                    </div>
+                <div>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <div class="d-flex flex-row">
+                            <p><a href="{{ path('ModifierVoiture', {'id': voiture.id}) }}" class="btn btn-outline-primary">Modifier</a></p>
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            <form method="post" action="{{ path('SupprimerVoiture', {'id': voiture.id}) }}" onsubmit="return confirm('Supprimer Cette Voiture?');">
+                                <button class="btn btn-outline-danger">Supprimer</button>
+                            </form>
+                        </div>
+                    {% elseif is_granted('ROLE_CLIENT') %}
+                        <a href={{ path('FaireReservation' , {'id':voiture.id}) }} type="button" class="btn btn-outline-primary">
+                        Reserver
+                        </a>
+                    {% endif %}
+                    </div>
+                </div>
+                </div>
+            </div>
+            {% endfor %}
+           
+        {% else %}
+            <h2 class="section-heading"><strong>Pas de Voitures Disponibles pour l'instant</strong></h2>
+        {% endif %}
+    </div>
+    {% if is_granted('ROLE_ADMIN') %}
+        <p><a href="{{ path('DeleteCarList') }}" class="btn btn-primary">Corbeille</a></p>
+        <p><a href="{{ path('GerantPublications') }}" class="btn btn-primary">Voitures Des Gerants</a></p>
+    {% endif %}
+</div>
+</div>
+

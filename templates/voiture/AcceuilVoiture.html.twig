@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+      {% include 'voiture/VoitureHeader.html.twig' %}
+{% endblock %}
+
+{% block ListeVoitures %}
+       {% include 'voiture/ListeVoitures.html.twig'%}
+{% endblock %}
+
+{% block Actions %}
+    {% include 'dashboard/Actions.html.twig' %}
+{% endblock %}

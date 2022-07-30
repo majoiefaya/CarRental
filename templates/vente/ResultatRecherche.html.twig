@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+
+{% block header %}
+    {% include 'vente/VenteHeader.html.twig' %}
+{% endblock %}
+
+
+{% block Clients %}
+<div class="site-section bg-light">
+    <div class="container">
+    <a href="{{ path('AjouterVente') }}" class="btn btn-dark">Ajouter</a>
+      <div class="row justify-content-center text-center mb-5 section-2-title">
+        <div class="col-md-6">
+          <h2 class="mb-4">Vos Ventes</h2>
+        </div>
+      </div>
+      <div class="row align-items-stretch">
+        {% if ventes is defined %}
+            {% for vente in ventes %}
+            <div class="col-lg-4 col-md-6 mb-5">
+            <div class="post-entry-1 h-100 person-1">
+                <img src="{{asset('ClientsImages/')~ vente.client.image}}" alt="Image"
+                class="img-fluid">
+                <div class="post-entry-1-contents">
+                <span class="meta">{{loop.index}}</span>
+                <h2>{{ vente.client }}</h2>
+                <p>Ce Client a acheté {{ vente.voiture }}</p>
+                <p>Date Achat {{vente.DateVente ? vente.DateVente|date('Y-m-d') : '' }}</p>
+                <p>Montant Achat {{ vente.montant }}</p>
+                </div>
+                <div class="d-flex flex-row">
+                  <a href="{{ path('ModifierVente',{'id': vente.id}) }}" class="btn btn-primary btn-sm">Modifier</a>
+                  <form method="post" action="{{ path('SupprimerUneVente', {'id': vente.id}) }}" onsubmit="return confirm('SupprimerVente');">
+                      <button class="btn btn-danger">Supprimer</button>
+                  </form>
+                  <a href="{{ path('InfosVente',{'id': vente.id}) }}" class="btn btn-primary btn-sm">Infos+</a>
+                </div>
+            </div>
+            </div>
+            {% endfor %}
+        {% else %}
+                <p>Aucun élément retrouvé</p>
+        {% endif %}
+      </div>
+      <a href="{{ path('Ventes') }}" class="btn btn-dark">Retourner à Ventes</a>
+    </div>
+  </div>
+{% endblock %}

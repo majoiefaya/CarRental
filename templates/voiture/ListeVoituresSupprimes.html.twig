@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+      {% include 'voiture/VoitureHeader.html.twig' %}
+{% endblock %}
+
+{% block ListeVoitures %}
+<div class="site-section bg-light">
+    <div class="container">
+    {% if is_granted('ROLE_GERANT') %}
+        
+    {% endif %}
+      <div class="row">
+        <div class="col-lg-7">
+          <h2 class="section-heading"><strong>Voitures Disponibles</strong></h2>
+          <p class="mb-5">Faites Votre Choix</p>    
+        </div>
+      </div>
+      <div class="row">   
+        {% if voitures is defined %}
+            {% for voiture in voitures %}     
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="listing d-block  align-items-stretch">
+                <div class="listing-img h-100 mr-4">
+                    <img src="{{asset('CarImages/')~ voiture.image}}" alt="Image" class="img-fluid">
+                </div>
+                <div class="listing-contents h-100">
+                    <h3>{{ voiture.marque }} {{ voiture.modele }}</h3>
+                    <span>Marque&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspModele</span>
+                    <div class="rent-price">
+                    <strong>{{ voiture.prix }}</strong><span class="mx-1"></span>&nbsp&nbsp&nbsp&nbsp{{ voiture.DatePubli ? voiture.DatePubli|date('Y-m-d') : '' }}<span class="mx-1">&nbsp&nbsp&nbsp&nbsp&nbsp
+                    &nbsp&nbsp&nbsp&nbsp{{ voiture.statut }}</span>
+                    </div>
+                    <div class="d-block d-md-flex mb-3 border-bottom pb-3">
+                    <div class="listing-feature pr-4">
+                        <span class="caption">Couleur:</span>
+                        <span class="number">{{ voiture.couleur }}</span>
+                    </div>
+                    <div class="listing-feature pr-4">
+                        <span class="caption">NumSerie:</span>
+                        <span class="number">{{ voiture.numserie }}</span>
+                    </div>
+                    <div class="listing-feature pr-4">
+                        <span class="caption">NumId:</span>
+                        <span class="number">{{ voiture.NumId }}</span>
+                    </div>
+                    </div>
+                    <div>
+                    {% if is_granted('ROLE_GERANT') %}
+                        <div class="d-flex flex-row">
+                            <p><a href="{{ path('RecupererVoiture', {'id': voiture.id}) }}" class="btn btn-primary btn-sm">Recuperer</a></p>
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            <p><a href="{{ path('SupprimerVoitureDef', {'id': voiture.id}) }}" class="btn btn-primary btn-sm">SupprimerDef</a></p>
+                            
+                        </div>
+                    {% endif %}
+                    </div>
+                </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <h2 class="section-heading"><strong>Pas de Voitures Disponibles pour l'instant</strong></h2>
+        {% endif %}
+    </div>
+</div>
+</div>
+{% endblock %}

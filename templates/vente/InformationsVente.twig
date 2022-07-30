@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+    {% include 'vente/VenteHeader.html.twig' %}
+{% endblock %}
+
+{% block Description %}
+    <div class="site-section">
+      <div class="container">
+      <a href="{{ path('AjouterVente') }}" class="btn btn-dark">Ajouter</a>
+        <div class="row">
+          <div class="col-lg-6 mb-5 mb-lg-0 order-lg-2">
+            <img src="{{asset('CarImages/')~ vente.voiture.image}}" class="img-fluid rounded">
+          </div>
+          <div class="col-lg-4 mr-auto">
+          <img src="{{asset('ClientsImages/')~ vente.client.image}}" alt="Image"
+                class="img-fluid">
+            <h2>{{ vente.voiture }}</h2>
+            <p>La Voiture a été acheté le:   {{vente.DateVente ? vente.DateVente|date('Y-m-d') : '' }} par   {{ vente.client }} a   {{ vente.montant }}</p>
+            <p></p>
+          </div>
+        </div>
+        <div class="d-flex flex-row">
+            <a href="{{ path('ModifierVente',{'id': vente.id}) }}" class="btn btn-dark">Modifier</a>
+             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <form method="post" action="{{ path('SupprimerUneVente', {'id': vente.id}) }}" onsubmit="return confirm('SupprimerVente');">
+                <button class="btn btn-danger">Supprimer</button>
+            </form>
+        </div>
+      </div>
+    </div>
+    <a href="{{ path('Ventes') }}" class="btn btn-primary">Retourner à Ventes</a>
+{% endblock %}
+
+{% block Actions %}
+    {% include 'dashboard/Actions.html.twig' %}
+{% endblock %}
+

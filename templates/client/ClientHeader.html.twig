@@ -1,0 +1,44 @@
+<div class="hero" style="background-image: url('{{asset('images/Clients.webp')}}')">
+        
+    <div class="container">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-lg-10">
+          <div class="intro">
+            <h1><strong>Clients</strong></h1>
+            <div class="custom-breadcrumbs"><a href="{{path('Acceuil')}}">Acceuil</a> <span class="mx-2">/</span> <strong>Clients</strong></div>
+          </div>
+
+          <form method="post" action="{{path('RechercheClient')}}" onsubmit="" class="trip-form">
+
+            <div class="row align-items-center">
+              
+              <div class="mb-3 mb-md-0 col-md-3">
+                <div class="form-control-wrap">
+                  <input type="text" id="cf-4" placeholder="Nom" name="Recherchenom" class="form-control">
+                </div>
+              </div>
+
+              <div class="mb-3 mb-md-0 col-md-3">
+                <div class="form-control-wrap">
+                  <input type="text" id="cf-4" placeholder="Username" name="RechercheUsername" class="form-control">
+                </div>
+              </div>
+
+              <div class="mb-3 mb-md-0 col-md-3">
+                <div class="form-control-wrap">
+                  <input type="number" id="cf-4" placeholder="Cni" name="cni" class="form-control">
+                </div>
+              </div>
+
+              <div class="mb-3 mb-md-0 col-md-3">
+                <button class="btn btn-primary btn-block py-3">Rechercher</button>
+              </div>
+
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>

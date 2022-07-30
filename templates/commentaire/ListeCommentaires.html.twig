@@ -1,0 +1,42 @@
+<div class="site-section bg-light">
+<div class="container">
+    <div class="row">
+    {% if is_granted('ROLE_ADMIN') %}
+      <div class="col-lg-7">
+        <h2 class="section-heading"><strong>Commentaires</strong></h2>
+        <p class="mb-5">Les Commentaires de Vos Clients</p>    
+      </div>
+    {% elseif is_granted('ROLE_CLIENT') %}
+     <div class="col-lg-7">
+        <h2 class="section-heading"><strong>Temoignages</strong></h2>
+        <p class="mb-5">Les Temoignages des Clients</p>    
+      </div>
+    {% endif %}
+    </div>
+    <div class="row">
+    {% for commentaire in commentaires %}
+      <div class="col-lg-4 mb-4 mb-lg-0">
+        <div class="testimonial-2">
+          <blockquote class="mb-4">
+            <p>{{ commentaire.Contenu }}</p>
+          </blockquote>
+          <div class="d-flex v-card align-items-center">
+            <img src="{{asset('ClientsImages/')~ commentaire.personne.image}}" alt="Image" class="img-fluid mr-3">
+            <div class="author-name">
+              <span class="d-block">{{ commentaire.personne.nom }}</span>
+              <span>{{ commentaire.DatePublication ? commentaire.DatePublication|date('Y-m-d') : '' }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% else %}
+            <h2 class="section-heading"><strong>Aucun Commentaire pour l'instant</strong></h2>
+      {% endfor %}
+    </div>
+    {% if is_granted('ROLE_CLIENT') %}
+        <a href="{{path('AjouterCommentaire')}}" class="btn btn-primary sm" >Ajouter</a>
+    {% elseif is_granted('ROLE_ADMIN') %}
+      <p></p>
+    {% endif %}
+  </div>
+</div>

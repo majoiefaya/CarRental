@@ -1,0 +1,31 @@
+<div class="site-section bg-light">
+      <div class="container">
+      <div class="col-lg-7">
+        <h2 class="section-heading"><strong>Modeles Ajoutées</strong></h2>
+        <p class="mb-5">Vos Modeles</p>    
+      </div>
+        <a href="{{ path('AjouterModele') }}" class="btn btn-outline-primary">Ajouter Un modele</a>
+        <div class="row">
+        {% for modele in modeles %}
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="post-entry-1 h-100">
+              <div class="post-entry-1-contents">
+                
+                <h2><a href="single.html">{{ modele.libelle }}</a></h2>
+                <span class="meta d-inline-block mb-3">{{ modele.code }}<span class="mx-2">by</span> <a href="{{path('UserInfos')}}">{{ modele.CreerPar }}</a></span>
+                <p>{{ modele.description }}</p>
+                <div class="d-flex justify-content-around"> 
+                <form method="post" action="{{ path('SupprimerDefModele', {'id': modele.id}) }}" onsubmit="return confirm('Etes-Vous sure de Vouloir Supprimer Cette Marque?');">
+                  <button class="btn btn-outline-danger">Supprimer</button>
+                </form>
+                <a href="{{ path('ModifierMarque', {'id': modele.id}) }}" class="btn btn-outline-primary">Modifier</a>
+              </div>
+              </div>
+              
+          </div>
+        </div>    
+        {% endfor %}
+        </div>  
+      </div>
+    </div>
+ 

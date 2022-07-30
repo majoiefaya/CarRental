@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+{% block ListeVoitures %}
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 mb-5 mb-lg-0 order-lg-2">
+            <div class="listing-contents h-100">
+                 <div class="d-block d-md-flex mb-3 border-bottom pb-3">
+                    <div class="listing-feature pr-4">
+                        <span class="caption">Marque:</span>
+                        <span class="number">{{ voiture.marque }}</span>
+                    </div>
+                    <div class="listing-feature pr-4">
+                        <span class="caption">Modele:</span>
+                        <span class="number">{{ voiture.modele }}</span>
+                    </div>
+                    <div class="listing-feature pr-4">
+                        <span class="caption">Publié Le:</span>
+                        <span class="number">{{ voiture.DatePubli ? voiture.DatePubli|date('Y-m-d') : '' }}</span>
+                    </div>
+                    <div class="listing-feature pr-4">
+                        <span class="caption">Prix:</span>
+                        <span class="number">{{ voiture.Prix }}</span>
+                    </div>
+                </div>
+                <div class="d-block d-md-flex mb-3 border-bottom pb-3">
+                    <div class="listing-feature pr-4">
+                        <span class="caption">Puissance:</span>
+                        <span class="number">{{ voiture.Puissance }}</span>
+                    </div>
+                    <div class="listing-feature pr-4">
+                        <span class="caption">Kilometrage:</span>
+                        <span class="number">{{ voiture.Kilometrage }}</span>
+                    </div>
+                    <div class="listing-feature pr-4">
+                        <span class="caption">Etat:</span>
+                        <span class="number">{{ voiture.Etat }}</span>
+                    </div>
+                    <div class="listing-feature pr-4">
+                        <span class="caption">MiseEnCirculation:</span>
+                        <span class="number">{{ voiture.DateMiseCircu ? voiture.DateMiseCircu|date('Y-m-d') : '' }}</span>
+                    </div>
+                </div>
+                <div class="d-block d-md-flex mb-3 border-bottom pb-3">
+                    <div class="listing-feature pr-4">
+                        <span class="caption">Couleur:</span>
+                        <span class="number">{{ voiture.couleur }}</span>
+                    </div>
+                    <div class="listing-feature pr-4">
+                        <span class="caption">NumSerie:</span>
+                        <span class="number">{{ voiture.numserie }}</span>
+                    </div>
+                    <div class="listing-feature pr-4">
+                        <span class="caption">NumIdentifiant:</span>
+                        <span class="number">{{ voiture.NumId }}</span>
+                    </div>
+                </div>
+                <div class="d-block d-md-flex mb-3 border-bottom pb-3">
+                    <div class="listing-feature pr-4">
+                        <span class="caption">Siege:</span>
+                        <span class="number">{{ voiture.Siege }}</span>
+                    </div>
+                    <div class="listing-feature pr-4">
+                        <span class="caption">Interieur:</span>
+                        <span class="number">{{ voiture.Interieur }}</span>
+                    </div>
+                    <div class="listing-feature pr-4">
+                        <span class="caption">Motorisation:</span>
+                        <span class="number">{{ voiture.Motorisation }}</span>
+                    </div>
+                    <div class="listing-feature pr-4">
+                        <span class="caption">Annee:</span>
+                        <span class="number">{{voiture.Annee ? voiture.Annee|date('Y-m-d') : '' }}</span>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="col-lg-4 mr-auto">
+            <img src="{{asset('CarImages/')~ voiture.image}}" class="img-fluid rounded">
+          </div>
+        </div>
+        <a href="{{ path('Voiture') }}" class="btn btn-primary">Retourner à Voitures</a>
+      </div>
+    </div>
+{% endblock %}

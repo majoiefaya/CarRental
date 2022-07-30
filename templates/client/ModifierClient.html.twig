@@ -1,0 +1,44 @@
+
+{% extends 'base.html.twig' %}
+
+
+
+{% block header %}
+<div class="hero inner-page" style="background-image: url({{asset('images/hero_1_a.jpg')}})">
+    <div class="container">
+      <div class="row align-items-end ">
+        <div class="col-lg-5">
+
+          <div class="intro">
+            <h1><strong>Modifier un Client</strong></h1>
+            <div class="custom-breadcrumbs"><a href="{{path('Acceuil')}}">Acceuil</a> <span class="mx-2">/</span> <strong>Modifier les Informations du Client</strong></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+
+
+{% block Description %}
+    {% form_theme form 'bootstrap_4_layout.html.twig' %}
+    {{ form_start(form) }}
+    <div class="form-group">
+    {{ form_widget(form) }}
+    </div>
+    <button class="btn btn-primary">Modifier</button>
+    {{ form_end(form) }}
+
+    <form method="post" action="{{ path('SupprimerClient', {'id': client.id}) }}" onsubmit="return confirm('Etes vous sur de vouloir supprimer Le Compte ?');">
+        <button class="btn btn-danger">Supprimer</button>
+    </form> 
+    {% if is_granted('ROLE_GERANT') %}
+      <a href="{{ path('Client') }}" class="btn btn-dark">Clients</a>
+    {% endif %}
+
+{% endblock %}
+
+
+    

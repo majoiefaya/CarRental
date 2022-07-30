@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+      {% include 'client/ClientHeader.html.twig' %}
+{% endblock %}
+
+{% block Clients %}
+<div class="site-section bg-light">
+    <div class="container">
+        <div class="row">
+          <div class="col-lg-7">
+            <h2 class="section-heading"><strong>Clients</strong></h2>
+            <p class="mb-5">Liste de Vos Clients</p>    
+            {% if is_granted('ROLE_GERANT') %}
+              <a href="{{ path('AjouterClient') }}" class="btn btn-dark">Ajouter</a>
+            {% endif %}
+          </div>
+        </div>
+        <div class="row">
+        {% if clients is defined%}
+          {% for client in clients %}
+            <div class="col-lg-4 mb-4 mb-lg-0">
+              <div class="testimonial-2">
+                <blockquote class="mb-4">
+                  <h1>Informations du Client N°:{{ loop.index }}</h1>
+                  <p>Cni:{{ client.cni }}    Id:{{ client.id }}</p>
+                  <p>Telephone:{{ client.Telephone }}</p>
+                  <p>DateNaissance:{{ client.DateNaissance ? client.DateNaissance|date('Y-m-d') : '' }}</p>
+                  <p>Username:{{ client.UserName }}
+                  </p><a href="{{ path('InfosClient', {'id': client.id}) }}" class="btn btn-primary btn-sm">Infos+</a></td>
+                </blockquote>
+                <div class="d-flex v-card align-items-center">
+                  <img src="{{asset('images/person_1.jpg')}}" alt="Image" class="img-fluid mr-3">
+                  <div class="author-name">
+                    <span class="d-block">{{ client.nom }}   {{ client.prenom }}</span>
+                    <span>Nom Prenom</span>
+                  </div>
+                </div>
+                {% if is_granted('ROLE_GERANT') %}
+                <div class="d-flex flex-row">
+                  <td><a href="{{ path('ModifierClient', {'id': client.id}) }}" class="btn btn-dark" >Modifier</a></td>
+                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                  <form method="post" action="{{ path('SupprimerClient', {'id': client.id}) }}" onsubmit="return confirm('Etes vous sur de vouloir supprimer ce Client?');">
+                    <button class="btn btn-danger">Supprimer</button>
+                  </form>
+                </div> 
+                {% endif %}
+              </div>
+            </div>
+            {% endfor %}
+        {% else %}
+          <h2 class="section-heading"><strong>Aucun élement retrouvé</strong></h2>
+        {% endif %}
+        </div>
+        <p><a href="{{ path('Client') }}" class="btn btn-dark">Retour à Clients</a></p>
+      </div>
+      
+    </div>
+    
+{% endblock %}
+
+
+{% block Actions %}
+    {% include 'dashboard/Actions.html.twig' %}
+{% endblock %}

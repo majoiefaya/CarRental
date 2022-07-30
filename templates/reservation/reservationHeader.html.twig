@@ -1,0 +1,42 @@
+<div class="hero" style="background-image: url('{{asset('images/Reservations.webp')}}')">
+        
+    <div class="container">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-lg-10">
+          <div class="intro">
+            <h1><strong>Réservations</strong></h1>
+            <div class="custom-breadcrumbs"><a href="{{path('Acceuil')}}">Acceuil</a> <span class="mx-2">/</span> <strong>Réservations</strong></div>
+          </div>
+  
+          <form method="post" action="{{path('RechercheVenteDate')}}" onsubmit="" class="trip-form">
+  
+            <div class="row align-items-center">
+              
+              <div class="mb-3 mb-md-0 col-md-3">
+                <div class="form-control-wrap">
+                  <input type="date" id="cf-4" placeholder="Modele" name="date1" class="form-control">
+                </div>
+              </div>
+  
+              <div class="mb-3 mb-md-0 col-md-3">
+                <div class="form-control-wrap">
+                  <input type="date" id="cf-4" placeholder="NumSerie" name="date2" class="form-control">
+                </div>
+              </div>
+  
+              <div class="mb-3 mb-md-0 col-md-3">
+                
+              </div>
+  
+              <div class="mb-3 mb-md-0 col-md-3">
+                <button class="btn btn-primary btn-block py-3">Rechercher</button>
+              </div>
+  
+            </div>
+  
+          </form>
+  
+        </div>
+      </div>
+    </div>
+  </div>

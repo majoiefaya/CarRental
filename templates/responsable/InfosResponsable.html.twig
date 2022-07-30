@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+        {% include 'dashboard/header.html.twig'%}
+{% endblock %}
+
+
+{% block Description %}
+    <div class="testimonial-2">
+        {% if is_granted('ROLE_ADMIN')%}
+            <form method="post" action="{{ path('SupprimerDef', {'id': responsable.id}) }}" onsubmit="return confirm('Etes vous sur de vouloir supprimer Votre Compte?');">
+                <button class="btn btn-outline-primary">Supprimer Votre Compte</button>
+            </form> 
+        {% endif %}
+        <blockquote class="mb-4">
+        <h2>Informations de Compte</h2>
+        <p>Role:{{ responsable.NomRole }}    Id:{{ responsable.id }}</p>
+        <p>Telephone:{{ responsable.Telephone }}</p>
+         {% if is_granted('ROLE_ADMIN')%}
+            <p>DateNaissance:{{ responsable.DateNaissance ? responsable.DateNaissance|date('Y-m-d') : '' }}</p>
+         {% endif %}
+        <p>Username:{{ responsable.UserName }}
+        </blockquote>
+        <div class="d-flex v-card align-items-center">
+        <img src="{{asset('ResponsablesImages/')~ responsable.image}}" alt="Image" class="img-fluid mr-3">
+        <div class="author-name">
+            <span class="d-block">{{ responsable.nom }}   {{ responsable.prenom }}</span>
+            <span>Nom Prenom</span>
+        </div>
+        </div>
+        {% if is_granted('ROLE_ADMIN')%}
+            <div class="d-flex flex-row">
+                <td><a href="{{ path('ModifierResponsable', {'id': responsable.id}) }}" class="btn btn-outline-primary">Modifier</a></td>
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock %}

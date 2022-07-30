@@ -1,0 +1,68 @@
+<footer class="site-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3">
+          <h1 class="footer-heading mb-4">Qui nous sommes?</h1>
+          <p>Nous sommes une Entreprise spécialisée dans la Commercialisation de Voitures Pour plus de détails Veuillez nous contactez ou visiter l'onglet A Propos</p>
+          <ul class="list-unstyled social">
+            <li><a href="#"><span class="icon-facebook"></span></a></li>
+            <li><a href="#"><span class="icon-instagram"></span></a></li>
+            <li><a href="#"><span class="icon-twitter"></span></a></li>
+            <li><a href="#"><span class="icon-linkedin"></span></a></li>
+          </ul>
+        </div>
+        <div class="col-lg-8 ml-auto">
+          <div class="row">
+            <div class="col-lg-3">
+              <h2 class="footer-heading mb-4">Voitures</h2>
+              <ul class="list-unstyled">
+                <li><a href="{{path('Voiture')}}">Nos Voitures</a></li>
+                {% if is_granted('ROLE_GERANT') %}
+                  <li><a href="{{path('AjouterVoiture')}}">Ajouter une Voiture</a></li>
+                {% endif %}
+              </ul>
+            </div>
+            {% if is_granted('ROLE_GERANT') %}
+              <div class="col-lg-3">
+                <h2 class="footer-heading mb-4">Clients</h2>
+                <ul class="list-unstyled">
+                  <li><a href="{{path('Client')}}">Page Clients</a></li>
+                  <li><a href="{{path('AjouterClient')}}">Ajouter Un Client</a></li>
+                </ul>
+              </div>
+            {% endif %}
+            {% if is_granted('ROLE_GERANT') %}
+              <div class="col-lg-3">
+                <h2 class="footer-heading mb-4">Ventes</h2>
+                <ul class="list-unstyled">
+                  <li><a href="#">Ajouter une Vente</a></li>
+                  <li><a href="#">Statistiques Ventes</a></li>
+                </ul>
+              </div>
+            {% endif %}
+            <div class="col-lg-3">
+              <h2 class="footer-heading mb-4">Contacts</h2>
+              <ul class="list-unstyled">
+                <li><a href="mailto:majoiefaya96@gmail.com?subject=Project&body=Salut,j'espere que vous allez bien?.Je suis interessé par une de vos voitures.">Envoyer un Mail</a></li>
+                <li><a href="tel:+22896329943">Appeler Notre Admin</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row pt-5 mt-5 text-center">
+        <div class="col-md-12">
+          <div class="border-top pt-5">
+            <p>
+          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved |<a href="https://colorlib.com" target="_blank" >MajoieFaya</a>
+          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+</div>

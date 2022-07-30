@@ -1,0 +1,103 @@
+<div class="site-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7">
+          <h2 class="section-heading"><strong>Onglets +</strong></h2>
+          <p class="mb-5">Vos Onglets</p>    
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-4 mb-5">
+          <div class="service-1 dark">
+            <span class="service-1-icon">
+              <span class="icon-home"></span>
+            </span>
+            <div class="service-1-contents">
+              <h3>Retournez a l'acceuil</h3>
+              <p></p>
+              <p class="mb-0"><a href="{{path('Acceuil')}}">Acceuil</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 mb-5">
+          <div class="service-1 dark">
+            <span class="service-1-icon">
+              <span class="icon-user"></span>
+            </span>
+            <div class="service-1-contents">
+              <h3>Vos Clients</h3>
+              {% for NombreClt in NombreClient %}
+                {%for CltNumber in NombreClt%}
+                  <p>{{CltNumber}}</p>
+                {%endfor%}
+              {% endfor %}
+              <p class="mb-0"><a href="{{path('Client')}}">Clients</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 mb-5">
+          <div class="service-1 dark">
+            <span class="service-1-icon">
+              <span class="icon-car"></span>
+            </span>
+            <div class="service-1-contents">
+              <h3>Vos Voitures</h3>
+              {% for NombreCar in NombreVoiture %}
+                {%for CarNumber in NombreCar%}
+                  <p>{{CarNumber}}</p>
+                {%endfor%}
+              {% endfor %}
+              <p class="mb-0"><a href="{{path('Voiture')}}">Voitures</a></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 mb-5">
+          <div class="service-1 dark">
+            <span class="service-1-icon">
+              <span class="icon-dollar"></span>
+            </span>
+            <div class="service-1-contents">
+              <h3>Vos Ventes</h3>
+              {% for Ventes in NombreVente %}
+                  {% for VenteNumber in Ventes %}
+                    <p>{{VenteNumber}}</p>
+                  {% endfor %}
+              {% endfor %}
+              <p class="mb-0"><a href="{{path('Ventes')}}">Ventes</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 mb-5">
+          <div class="service-1 dark">
+            <span class="service-1-icon">
+              <span class="icon-bookmark"></span>
+            </span>
+            <div class="service-1-contents">
+              <h3>Consultez Vos Réservations</h3>
+               {% for reservation in NombreReservation %}
+                {% for reservationNumber in reservation %}
+                  <p>{{reservationNumber}}</p>
+                {% endfor %}
+              {% endfor %}
+              <p class="mb-0"><a href="{{path('Réservation')}}">Réservations</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 mb-5">
+          <div class="service-1 dark">
+            <span class="service-1-icon">
+              <span class="icon-phone"></span>
+            </span>
+            <div class="service-1-contents">
+              <h3>Vos Contacts</h3>
+              <p></p>
+              <p class="mb-0"><a href="{{path('Contact')}}">Contacts</a></p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>

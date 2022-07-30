@@ -1,0 +1,33 @@
+
+{% extends 'base.html.twig' %}
+
+
+
+{% block header %}
+<div class="hero inner-page" style="background-image: url({{asset('images/hero_1_a.jpg')}})">
+    <div class="container">
+      <div class="row align-items-end ">
+        <div class="col-lg-5">
+
+          <div class="intro">
+            <h1><strong>Modification des Informations d'un Compte Responsable</strong></h1>
+            <div class="custom-breadcrumbs"><a href="{{path('Acceuil')}}">Acceuil</a> <span class="mx-2">/</span> <strong>Modification d'un Compte Responsable</strong></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block Description %}
+    {% form_theme form 'bootstrap_4_layout.html.twig' %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <div class="d-flex justify-content-around"> 
+    <button class="btn btn-outline-primary">Sauvegarder</button>
+    {{ form_end(form) }}
+
+    <a href="{{ path('Responsable') }}" class="btn btn-outline-dark">Retourner a Responsables</a>
+    </div>
+{% endblock %}

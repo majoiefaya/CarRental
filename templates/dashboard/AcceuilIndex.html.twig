@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+        {% include 'dashboard/header.html.twig'%}
+{% endblock %}
+
+{% block Description %}
+        {% include 'dashboard/Description.html.twig'%}
+{% endblock %}
+
+{% block Features %}
+{% if is_granted('ROLE_ADMIN') %}
+        {% include 'dashboard/Features.html.twig' %}
+{% endif %}
+{% endblock %}
+
+{% block Commentaires %}
+        {% include 'commentaire/ListeCommentaires.html.twig' %}
+{% endblock %}
+
+
+{% block Actions %}
+        {% include 'dashboard/Actions.html.twig' %}
+{% endblock %}

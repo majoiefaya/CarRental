@@ -1,0 +1,63 @@
+<div class="site-section bg-light">
+    <div class="container">
+    {% if is_granted('ROLE_GERANT') %}
+        <p><a href="{{ path('AjouterReservation') }}" class="btn btn-outline-primary">Ajouter une Réservation</a></p>
+    {% endif %}
+      <div class="row">
+        <div class="col-lg-7">
+          <h2 class="section-heading"><strong>Réservations Faites</strong></h2>
+          <p class="mb-5">Validez les Réservations Faites Par Vos Clients</p>    
+        </div>
+      </div>
+      <div class="row">   
+        {% if reservations is defined %}
+            {% for reservation in reservations %}     
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="listing d-block  align-items-stretch">
+                <div class="listing-img h-100 mr-4">
+                    <img src="{{asset('CarImages/')~ reservation.Voiture.image}}" alt="Image" class="img-fluid">
+                </div>
+                <h3>{{reservation.Voiture.marque}} {{reservation.Voiture.modele}}</h3>
+                <div class="listing-contents h-100">
+                    <span>Client:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="{{ path('InfosClient', {'id': reservation.client.id}) }}" class="btn btn-outline-dark">Plus d'infos sur Le Client</a></span>
+                    <p></p>
+                    <h3>{{ reservation.client.nom }} {{ reservation.client.prenom }}</h3>
+                    <p>A Reservée a {{reservation.PrixReservation}}</p>
+                    <div class="rent-price">
+                    <span class="mx-1"><a href="https://wa.me/+228{{reservation.client.telephone}}?text=Reponse A Votre Réservation" class="btn btn-outline-dark">Watsapp</a><span class="mx-1"></strong>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp<span class="mx-1"><a href="tel:+228{{reservation.client.telephone}}" class="btn btn-outline-dark">Appeler</a></span>
+                    &nbsp&nbsp&nbsp&nbsp<span class="mx-1"><a href="sms:+228{{reservation.client.telephone}}" class="btn btn-outline-dark">SMS</a></span>
+                    </div>
+                    <div>
+                    <p></p>
+                        <div>
+                        {% if is_granted('ROLE_GERANT') %}
+                            <div class="d-flex flex-row">
+                                &nbsp<p><a href="{{ path('ModifierRéservation', {'id': reservation.id}) }}" class="btn btn-outline-dark">Modifier</a></p>
+                                    &nbsp&nbsp&nbsp&nbsp
+                                <form method="post" action="{{ path('Vendre', {'id': reservation.id}) }}" onsubmit="return confirm('Etes Vous sure d adjuger la vente de la {{reservation.Voiture.marque}} {{reservation.Voiture.modele}} a {{ reservation.client.nom }} {{ reservation.client.prenom }}?');">
+                                    <button class="btn btn-outline-primary">Vendre</button>
+                                </form>
+                                    &nbsp&nbsp&nbsp
+                                <form method="post" action="{{ path('SupprimerDef', {'id': reservation.id}) }}" onsubmit="return confirm('Supprimer Cette reservation?');">
+                                    <button class="btn btn-outline-danger">Supprimer</button>
+                                </form>
+                            </div>
+                        {% endif %}
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            {% endfor %}
+           
+        {% else %}
+            <h2 class="section-heading"><strong>Pas de reservations Disponibles pour l'instant</strong></h2>
+        {% endif %}
+    </div>
+    {% if is_granted('ROLE_GERANT') %}
+        <p><a href="{{ path('DeleteCarList') }}" class="btn btn-primary">Corbeille</a></p>
+    {% endif %}
+</div>
+</div>
+

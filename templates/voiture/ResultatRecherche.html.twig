@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+
+{% block header %}
+      {% include 'voiture/VoitureHeader.html.twig' %}
+{% endblock %}
+
+{% block ListeVoitures %}
+        <div class="site-section bg-light">
+            <div class="container">
+            {% if is_granted('ROLE_GERANT') %}
+                <p><a href="{{ path('AjouterVoiture') }}" class="btn btn-primary">Ajouter une Voiture</a></p>
+            {% endif %}
+              <div class="row">
+                <div class="col-lg-7">
+                  <h2 class="section-heading"><strong>Resultat de La Recherche</strong></h2>
+                  <p class="mb-5">N'hesitez pas à Reserver</p>    
+                </div>
+              </div>
+              <div class="row">   
+                {% if voitures is defined %}
+                    {% for voiture in voitures %}     
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="listing d-block  align-items-stretch">
+                        <div class="listing-img h-100 mr-4">
+                            <img src="{{asset('CarImages/')~ voiture.image}}" alt="Image" class="img-fluid">
+                        </div>
+                        <div class="listing-contents h-100">
+                            <h3>{{ voiture.marque }} {{ voiture.modele }}</h3>
+                            <span>Marque   Modele</span>
+                            <div class="rent-price">
+                            <strong>{{ voiture.prix }}</strong><span class="mx-1">/</span>{{ voiture.DateAchat ? voiture.DatePubli|date('Y-m-d') : '' }}
+                            </div>
+                            <div class="d-block d-md-flex mb-3 border-bottom pb-3">
+                            <div class="listing-feature pr-4">
+                                <span class="caption">Couleur:</span>
+                                <span class="number">{{ voiture.couleur }}</span>
+                            </div>
+                            <div class="listing-feature pr-4">
+                                <span class="caption">NumSerie:</span>
+                                <span class="number">{{ voiture.numserie }}</span>
+                            </div>
+                            <div class="listing-feature pr-4">
+                                <span class="caption">NumId:</span>
+                                <span class="number">{{ voiture.NumId }}</span>
+                            </div>
+                            </div>
+                            <div>
+                            {% if is_granted('ROLE_GERANT') %}
+                                <div class="d-flex flex-row">
+                                    <p><a href="{{ path('ModifierVoiture', {'id': voiture.id}) }}" class="btn btn-dark">Modifier</a></p>
+                                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                    <form method="post" action="{{ path('SupprimerVoiture', {'id': voiture.id}) }}" onsubmit="return confirm('Supprimer Cette Voiture?');">
+                                        <button class="btn btn-danger">Supprimer</button>
+                                    </form>
+                                </div>
+                            {% endif %}
+                            <form method="post" action="{{ path('ReserverVoiture' , {'id':voiture.id}) }}" onsubmit="return confirm('Etes Vous vraiment sur de vouloir Reserver la {{ voiture.marque }} {{ voiture.modele }} ?');">
+                                <button class="btn btn-primary">Reserver</button>
+                            </form>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <h2 class="section-heading"><strong>Aucun élement retrouvé</strong></h2>
+                {% endif %}
+            </div>
+            <p><a href="{{ path('Voiture') }}" class="btn btn-primary">Voitures</a></p>
+        </div>
+    </div>
+   
+
+{% endblock %}
+
+{% block Actions %}
+    {% include 'dashboard/Actions.html.twig' %}
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+        {% include 'dashboard/header.html.twig'%}
+{% endblock %}
+
+
+{% block Description %}
+    <div class="testimonial-2">
+        <form method="post" action="{{ path('SupprimerDef', {'id': gerant.id}) }}" onsubmit="return confirm('Etes vous sur de vouloir supprimer Votre Compte?');">
+            <button class="btn btn-outline-primary">Supprimer Votre Compte</button>
+        </form> 
+        <blockquote class="mb-4">
+        <h2>Voici Les Informations de votre Compte</h2>
+        <p>Role:{{ gerant.NomRole }}    Id:{{ gerant.id }}</p>
+        <p>Telephone:{{ gerant.Telephone }}</p>
+        <p>DateNaissance:{{ gerant.DateNaissance ? gerant.DateNaissance|date('Y-m-d') : '' }}</p>
+        <p>Username:{{ gerant.UserName }}
+        </blockquote>
+        <div class="d-flex v-card align-items-center">
+        <img src="{{asset('GerantImages/')~ gerant.image}}" alt="Image" class="img-fluid mr-3">
+        <div class="author-name">
+            <span class="d-block">{{ gerant.nom }}   {{ gerant.prenom }}</span>
+            <span>Nom Prenom</span>
+        </div>
+        </div>
+        <div class="d-flex flex-row">
+            <td><a href="{{ path('ModifierGerant', {'id': gerant.id}) }}" class="btn btn-outline-primary">Modifier</a></td>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        </div>
+        {% if is_granted('ROLE_ADMIN') %}
+            <div class="d-flex justify-content-around">
+                <span class="mx-1"><a href="https://wa.me/+228{{gerant.telephone}}?text=Reponse A Votre Réservation" class="btn btn-outline-dark">Watsapp</a><span class="mx-1"></strong>
+                <span class="mx-1"><a href="tel:+228{{gerant.telephone}}" class="btn btn-outline-dark">Appeler</a></span>
+                <span class="mx-1"><a href="sms:+228{{gerant.telephone}}" class="btn btn-outline-dark">SMS</a></span>
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock %}

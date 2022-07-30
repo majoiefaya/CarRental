@@ -1,0 +1,94 @@
+<div class="site-section bg-light">
+    <div class="container">
+      {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('AjouterGerant') }}" class="btn btn-outline-primary">Ajouter un Gerant</a>
+      
+        <form method="post" action="{{path('RechercheDateNaiss')}}" onsubmit="" class="trip-form">
+
+          <div class="row align-items-center">
+            
+            <div class="mb-3 mb-md-0 col-md-3">
+              <div class="form-control-wrap">
+                <input type="date" id="cf-4" placeholder="date1" name="date1" class="form-control">
+              </div>
+            </div>
+
+            <div class="mb-3 mb-md-0 col-md-3">
+              <div class="form-control-wrap">
+                <input type="date" id="cf-4" placeholder="date2" name="date2" class="form-control">
+              </div>
+            </div>
+
+            <div class="mb-3 mb-md-0 col-md-3">
+              <div class="form-control-wrap">
+                
+              </div>
+            </div>
+
+            <div class="mb-3 mb-md-0 col-md-3">
+              <button class="btn btn-primary btn-block py-3">Rechercher</button>
+            </div>
+
+          </div>
+
+        </form>
+      {% endif %}
+        {% if is_granted('ROLE_GERANT') %}
+        <div class="row">
+          <div class="col-lg-7">
+            <h2 class="section-heading"><strong>Gerants</strong></h2>
+            <p class="mb-5">Liste Des Gerants</p>    
+          </div>
+        </div>
+        {% else %}
+        <div class="row">
+          <div class="col-lg-7">
+            <h2 class="section-heading"><strong>Liste De Nos Gerants</strong></h2>
+            <p class="mb-5">Contactez Nos Gerants</p>    
+          </div>
+        </div>
+        {% endif %}
+
+        <div class="row">
+        {% if gerants is defined %}
+          {% for gerant in gerants %}
+            <div class="col-lg-4 mb-4 mb-lg-0">
+              <div class="testimonial-2">
+                <blockquote class="mb-4">
+                  <h1>Informations du gerant N°:{{ loop.index }}</h1>
+                  <p>Role:{{ gerant.NomRole }}    Id:{{ gerant.id }}</p>
+                  <p>Telephone:{{ gerant.Telephone }}</p>
+                  <p>DateNaissance:{{ gerant.DateNaissance ? gerant.DateNaissance|date('Y-m-d') : '' }}</p>
+                  <p>Username:{{ gerant.UserName }}
+                  </p><a href="{{ path('InfosGerant', {'id': gerant.id}) }}" class="btn btn-primary btn-sm">Infos+</a></td>
+                </blockquote>
+                <div class="d-flex v-card align-items-center">
+                  <img src="{{asset('GerantImages/')~ gerant.image}}" alt="Image" class="img-fluid mr-3">
+                  <div class="author-name">
+                    <span class="d-block">{{ gerant.nom }}   {{ gerant.prenom }}</span>
+                    <span>Nom Prenom</span>
+                  </div>
+                </div>
+                {% if is_granted('ROLE_ADMIN') %}
+                  <div class="d-flex flex-row">
+                    <td><a href="{{ path('ModifierGerant', {'id': gerant.id}) }}" class="btn btn-outline-primary" >Modifier</a></td>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <form method="post" action="{{ path('SupprimerGerant', {'id': gerant.id}) }}" onsubmit="return confirm('Etes vous sur de vouloir supprimer ce Compte Gerant?');">
+                      <button class="btn btn-outline-danger">Supprimer</button>
+                    </form>
+                  </div> 
+                {% endif %}
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <h2 class="section-heading"><strong>Aucun Gérant présent pour l'instant</strong></h2>
+        {% endif %}
+            
+          
+        </div>
+       
+      </div>
+      
+    </div>
+    

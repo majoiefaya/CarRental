@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Marque{% endblock %}
+
+{% block body %}
+    <h1>Marque</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ marque.id }}</td>
+            </tr>
+            <tr>
+                <th>CreerPar</th>
+                <td>{{ marque.CreerPar }}</td>
+            </tr>
+            <tr>
+                <th>CreerLe</th>
+                <td>{{ marque.CreerLe ? marque.CreerLe|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>ModifierPar</th>
+                <td>{{ marque.ModifierPar }}</td>
+            </tr>
+            <tr>
+                <th>ModifierLe</th>
+                <td>{{ marque.ModifierLe ? marque.ModifierLe|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Enable</th>
+                <td>{{ marque.Enable ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Code</th>
+                <td>{{ marque.code }}</td>
+            </tr>
+            <tr>
+                <th>Libelle</th>
+                <td>{{ marque.libelle }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ marque.description }}</td>
+            </tr>
+            <tr>
+                <th>Logo</th>
+                <td>{{ marque.Logo }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_marque_index') }}">back to list</a>
+
+    <a href="{{ path('app_marque_edit', {'id': marque.id}) }}">edit</a>
+
+    {{ include('marque/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modele{% endblock %}
+
+{% block body %}
+    <h1>Modele</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ modele.id }}</td>
+            </tr>
+            <tr>
+                <th>CreerPar</th>
+                <td>{{ modele.CreerPar }}</td>
+            </tr>
+            <tr>
+                <th>CreerLe</th>
+                <td>{{ modele.CreerLe ? modele.CreerLe|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>ModifierPar</th>
+                <td>{{ modele.ModifierPar }}</td>
+            </tr>
+            <tr>
+                <th>ModifierLe</th>
+                <td>{{ modele.ModifierLe ? modele.ModifierLe|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Enable</th>
+                <td>{{ modele.Enable ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Code</th>
+                <td>{{ modele.code }}</td>
+            </tr>
+            <tr>
+                <th>Libelle</th>
+                <td>{{ modele.libelle }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ modele.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_modele_index') }}">back to list</a>
+
+    <a href="{{ path('app_modele_edit', {'id': modele.id}) }}">edit</a>
+
+    {{ include('modele/_delete_form.html.twig') }}
+{% endblock %}

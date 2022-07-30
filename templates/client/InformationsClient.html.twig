@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+    {% if is_granted('ROLE_GERANT')%}
+      {% include 'client/ClientHeader.html.twig' %}
+    {% elseif is_granted('ROLE_CLIENT') %}
+      {% include 'dashboard/header.html.twig' %}
+    {% endif %}
+{% endblock %}
+
+
+{% block Features %}
+  {% if is_granted('ROLE_GERANT')%}
+    {% include 'dashboard/Features.html.twig' %}
+  {% endif %}
+{% endblock %}
+
+
+
+{% block Clients %}
+  <div class="testimonial-2">
+    <blockquote class="mb-4">
+    {% if is_granted('ROLE_GERANT') %}
+      <h1>Informations A Propos du Client</h1>
+    {% elseif is_granted('ROLE_CLIENT') %}
+      <h1>Vos Informations de Compte</h1>
+    {% endif %}
+      <p>Cni:{{ client.cni }}    Id:{{ client.id }}</p>
+      <p>Telephone:{{ client.Telephone }}</p>
+      <p>DateNaissance:{{ client.DateNaissance ? client.DateNaissance|date('Y-m-d') : '' }}</p>
+      <p>Username:{{ client.UserName }}
+    </blockquote>
+    <div class="d-flex v-card align-items-center">
+      <img src="{{asset('ClientsImages/')~ client.image}}" alt="Image" class="img-fluid mr-3">
+      <div class="author-name">
+        <span class="d-block">{{ client.nom }}   {{ client.prenom }}</span>
+        <span>Nom Prenom</span>
+      </div>
+    </div>
+    <div class="d-flex flex-row">
+        <td><a href="{{ path('ModifierClient', {'id': client.id}) }}" class="btn btn-outline-dark">Modifier</a></td>
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <form method="post" action="{{ path('SupprimerClient', {'id': client.id}) }}" onsubmit="return confirm('Etes vous sur de vouloir supprimer ce Client?');">
+          <button class="btn btn-outline-danger">Supprimer</button>
+        </form> 
+    </div>
+  </div>
+  {% if is_granted('ROLE_CLIENT') %}
+    <a href="{{ path('Acceuil') }}" class="btn btn-primary">Acceuil</a>
+  {% elseif is_granted('ROLE_GERANT') %}
+    <a href="{{ path('Client') }}" class="btn btn-outline-dark">Retour a La Page Client</a>
+  {% endif %}
+{% endblock %}

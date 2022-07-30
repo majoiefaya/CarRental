@@ -1,0 +1,31 @@
+
+{% extends 'base.html.twig' %}
+
+
+
+{% block header %}
+<div class="hero inner-page" style="background-image: url({{asset('images/hero_1_a.jpg')}})">
+    <div class="container">
+      <div class="row align-items-end ">
+        <div class="col-lg-5">
+
+          <div class="intro">
+            <h1><strong>Ajouter Un Commentaire</strong></h1>
+            <div class="custom-breadcrumbs"><a href="{{path('Acceuil')}}">Acceuil</a> <span class="mx-2">/</span></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block Description %}
+    {% form_theme form 'bootstrap_4_layout.html.twig' %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <div class="d-flex justify-content-center"> 
+    <button class="btn btn-outline-primary">Sauvegarder</button>
+    {{ form_end(form) }}
+    </div>
+{% endblock %}

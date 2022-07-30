@@ -1,0 +1,35 @@
+    <div class="site-section bg-light">
+      <div class="container">
+      <div class="col-lg-7">
+        <h2 class="section-heading"><strong>Marques Ajoutées</strong></h2>
+        <p class="mb-5">Vos Marques</p>    
+      </div>
+        <a href="{{ path('AjouterMarque') }}" class="btn btn-outline-primary">Ajouter Une Marque</a>
+        <div class="row">
+        {% for marque in marques %}
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="post-entry-1 h-100">
+              <a href="single.html">
+                <img src="{{asset('MarquesImages/')~ marque.logo}}" alt="Image"
+                 class="img-fluid">
+              </a>
+              <div class="post-entry-1-contents">
+                
+                <h2><a href="single.html">{{ marque.libelle }}</a></h2>
+                <span class="meta d-inline-block mb-3">{{ marque.code }}<span class="mx-2">by</span> <a href="{{path('UserInfos')}}">{{ marque.CreerPar }}</a></span>
+                <p>{{ marque.description }}</p>
+                <div class="d-flex justify-content-around"> 
+                <form method="post" action="{{ path('SupprimerDefMarque', {'id': marque.id}) }}" onsubmit="return confirm('Etes-Vous sure de Vouloir Supprimer Cette Marque?');">
+                  <button class="btn btn-outline-danger">Supprimer</button>
+                </form>
+                <a href="{{ path('ModifierMarque', {'id': marque.id}) }}" class="btn btn-outline-primary">Modifier</a>
+              </div>
+              </div>
+              
+          </div>
+        </div>    
+        {% endfor %}
+        </div>  
+      </div>
+    </div>
+ 

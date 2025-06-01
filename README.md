@@ -89,6 +89,7 @@ git clone https://github.com/ton-utilisateur/carrental.git
 cd carrental
 
 # 2. Installer les dépendances PHP
+composer update
 composer install
 
 # 3. Copier le fichier d'environnement

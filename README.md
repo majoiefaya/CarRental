@@ -156,7 +156,7 @@ symfony server:start
         <img src="https://github.com/majoiefaya/CarRental/blob/main/assets/images/liste_clients.png" width="300" alt="liste_clients"/>
       </td>
       <td align="center">Consulting<br/>
-        <img src=" https://github.com/majoiefaya/CarRental/blob/main/assets/images/consulting.png" width="300" alt="consulting"/>
+        <img src="https://github.com/majoiefaya/CarRental/blob/main/assets/images/consulting.png" width="300" alt="consulting"/>
       </td>
     </tr>
   </table>

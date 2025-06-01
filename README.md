@@ -126,9 +126,37 @@ symfony server:start
 
 <h3 align="center">• • •</h3>
 
-## 📸 Captures d’écran
+## Captures d’écran
 
-> *(Tu pourras ajouter plus tard des captures dans un dossier `assets/images` par exemple, avec des `img` en markdown)*
+<p align="center">
+  <table>
+    <tr>
+      <td align="center">Page d’accueil<br/>
+        <img src="https://github.com/majoiefaya/CarRental/blob/main/assets/images/accueil.png" width="300" alt="accueil"/>
+      </td>
+      <td align="center">À propos<br/>
+        <img src="https://github.com/majoiefaya/CarRental/blob/main/assets/images/car_rental_about.png" width="300" alt="about"/>
+      </td>
+      <td align="center">Ajout vente<br/>
+        <img src="https://github.com/majoiefaya/CarRental/blob/main/assets/images/car_rental_add_vente.png" width="300" alt="add_vente"/>
+      </td>
+      <td align="center">Admin Dashboard<br/>
+        <img src="https://github.com/majoiefaya/CarRental/blob/main/assets/images/car_rental_admin_dashboard.png" width="300" alt="admin_dashboard"/>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">Contact<br/>
+        <img src="https://github.com/majoiefaya/CarRental/blob/main/assets/images/car_rental_contact.png" width="300" alt="contact"/>
+      </td>
+      <td align="center">Réservation<br/>
+        <img src="https://github.com/majoiefaya/CarRental/blob/main/assets/images/car_rental_reservation.png" width="300" alt="reservation"/>
+      </td>
+      <td align="center">Liste des clients<br/>
+        <img src="https://github.com/majoiefaya/CarRental/blob/main/assets/images/liste_clients.png" width="300" alt="liste_clients"/>
+      </td>
+    </tr>
+  </table>
+</p>
 
 <h3 align="center">• • •</h3>
 

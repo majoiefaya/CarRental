@@ -86,23 +86,33 @@ docker-compose.yml
 ```bash
 # 1. Cloner le projet
 git clone https://github.com/ton-utilisateur/carrental.git
-cd carrental
+cd carRental
+cd main
 
 # 2. Installer les dépendances PHP
+# Si le fichier composer.lock est à jour :
+composer install
+
+# Sinon, pour forcer la mise à jour (utile si erreur ou changement de version PHP)
 composer update
 composer install
 
-# 3. Copier le fichier d'environnement
+# 3. Copier et configurer l’environnement
 cp .env .env.local
+# Modifier les variables de connexion à la base dans .env.local si besoin
 
 # 4. Créer la base de données
 php bin/console doctrine:database:create
 
-# 5. Appliquer les migrations
+# 5. Générer un fichier de migration (si tu viens d’ajouter ou modifier des entités)
+php bin/console doctrine:migrations:diff
+
+# 6. Appliquer les migrations pour créer les tables
 php bin/console doctrine:migrations:migrate
 
-# 6. Lancer le serveur
+# 7. Lancer le serveur de développement
 symfony server:start
+
 ```
 
 <h3 align="center">• • •</h3>

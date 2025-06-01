@@ -1,5 +1,4 @@
-
-# 🚘 CarRental – Plateforme de gestion de vente de voitures
+# CarRental – Plateforme de gestion de vente de voitures
 
 > Une application Symfony MVC permettant au gérant d'une concession de gérer voitures, clients, marques, modèles et réservations de véhicules.
 
@@ -16,13 +15,13 @@
 
 <h3 align="center">• • •</h3>
 
-## 🧾 À propos
+## À propos
 
 **CarRental** est une application développée avec Symfony permettant à une concession automobile de gérer son activité. Le gérant peut CRUDer les entités clés : voitures, clients, marques, modèles, et gérer les réservations de véhicules. Les clients peuvent consulter les véhicules disponibles et effectuer une réservation.
 
 <h3 align="center">• • •</h3>
 
-## 🎯 Objectifs techniques
+## Objectifs techniques
 
 - Implémentation d’une architecture MVC avec Symfony
 - Création de relations entre entités : voiture, client, marque, modèle
@@ -32,7 +31,7 @@
 
 <h3 align="center">• • •</h3>
 
-## ⚙️ Fonctionnalités
+## Fonctionnalités
 
 ### Gérant (Administrateur)
 - Ajouter, modifier, supprimer : voitures, clients, marques, modèles
@@ -47,7 +46,7 @@
 
 <h3 align="center">• • •</h3>
 
-## 🧱 Stack technique
+## Stack technique
 
 | Élément          | Technologies utilisées               |
 |------------------|--------------------------------------|
@@ -82,7 +81,7 @@ docker-compose.yml
 
 <h3 align="center">• • •</h3>
 
-## 🚀 Installation locale
+## Installation locale
 
 ```bash
 # 1. Cloner le projet
@@ -107,7 +106,7 @@ symfony server:start
 
 <h3 align="center">• • •</h3>
 
-## 🧑‍🤝‍🧑 Rôles et droits
+## Rôles et droits
 
 | Rôle      | Accès                                  |
 |-----------|-----------------------------------------|
@@ -117,7 +116,7 @@ symfony server:start
 
 <h3 align="center">• • •</h3>
 
-## 🧠 Compétences mobilisées
+## Compétences mobilisées
 
 - Développement fullstack Symfony MVC
 - Relations complexes entre entités Doctrine
@@ -133,7 +132,7 @@ symfony server:start
 
 <h3 align="center">• • •</h3>
 
-## 📝 Licence
+## Licence
 
 Ce projet est open-source, publié sous licence **MIT**.
 
